@@ -1,0 +1,100 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 350px;
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #4CAF50;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* ปุ่ม Add หลัก */
+#add-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    counter-reset: todo-counter; /* สร้างตัวนับชื่อ todo-counter เริ่มที่ 0 */
+}
+
+li {
+    counter-increment: todo-counter; /* ทุกครั้งที่มี li ให้บวกเลขเพิ่ม 1 */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* ใส่ตัวเลขไว้หน้าข้อความ */
+li::before {
+    content: counter(todo-counter) ". "; /* แสดงเลขที่นับได้ ตามด้วยจุด */
+    font-weight: bold;
+    color: #4CAF50;
+    min-width: 25px; /* จองพื้นที่ให้ตัวเลข จะได้ดูเป็นระเบียบ */
+}
+
+
+.completed span {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.done-btn {
+    background-color: #2196F3;
+    color: white;
+    font-size: 12px;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+    font-size: 12px;
+}
