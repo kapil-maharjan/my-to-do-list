@@ -21,10 +21,30 @@ function createTodoElement(task, isCompleted) {
     if (isCompleted) li.classList.add('completed');
 
     li.innerHTML = `
-        <span>${task}</span> 
+        <span class="todo-text" contenteditable="true">${task}</span> 
         <button class="done-btn">${isCompleted ? 'Cancel' : 'Done'}</button> 
         <button class="delete-btn">Delete</button>
     `;
+
+    const span = li.querySelector('.todo-text');
+    let oldText = task;
+    span.addEventListener('blur', function() {
+        const newText = span.innerText.trim();
+        if (newText !== oldText && newText !== '') {
+            editLocalTodos(oldText, newText);
+            oldText = newText;
+        } else if(newText === '') {
+            span.innerText = oldText; 
+        }
+    });
+
+    span.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            span.blur();
+        }
+    });
+
     toDoList.appendChild(li);
 }
 
@@ -70,6 +90,16 @@ function updateLocalTodo(taskText) {
     let todos = JSON.parse(localStorage.getItem('todos'));
     todos.forEach(t => {
         if (t.text === taskText) t.completed = !t.completed;
+    });
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function editLocalTodo(oldText, newText) {
+    let todos = JSON.parse(localStorage.getItem('todos'));
+    todos.forEach(t => {
+        if (t.text === oldText) {
+            t.text = newText;
+        }
     });
     localStorage.setItem('todos', JSON.stringify(todos));
 }
