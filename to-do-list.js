@@ -31,14 +31,21 @@ function createTodoElement(task, isCompleted) {
     span.addEventListener('blur', function() {
         const newText = span.innerText.trim();
         if (newText !== oldText && newText !== '') {
-            editLocalTodos(oldText, newText);
+            editLocalTodo(oldText, newText);
             oldText = newText;
         } else if(newText === '') {
             span.innerText = oldText; 
         }
     });
 
-    span.addEventListener('keydown', function(e) {
+    span.addEventListener('blur', function() {
+        const newText = span.innerText.trim();
+        if (newText !== oldText && newText !== '') {
+            editLocalTodo(oldText, newText);
+            oldText = newText;
+        } else if(newText === '') {
+            span.innerText = oldText; 
+        }
         if (e.key === 'Enter') {
             e.preventDefault();
             span.blur();
