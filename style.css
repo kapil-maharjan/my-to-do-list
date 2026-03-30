@@ -98,3 +98,38 @@ li::before {
     color: white;
     font-size: 12px;
 }
+
+
+.todo-text {
+    position: relative;
+    flex: 1;
+    cursor: pointer; 
+    padding: 5px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.todo-text:hover::after {
+    content: " (Click to edit)";
+    font-size: 10px;
+    color: #4CAF50;
+    font-weight: normal;
+    vertical-align: middle;
+    opacity: 0.7;
+}
+
+.todo-text:focus::after {
+    content: "";
+}
+
+.todo-text:hover {
+    background-color: #f0f0f0; 
+}
+
+.todo-text:focus {
+    cursor: text; 
+    background-color: #fff9c4;
+    outline: none;
+    border-bottom: 2px solid #4CAF50;
+}
+
